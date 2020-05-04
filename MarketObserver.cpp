@@ -10,6 +10,7 @@ int main() {
     string findSymb;
     string buffer;
     char command;
+    bool running = true;
 
     /*while(true) {
         cout << "Insert which symbol (quit to exit): " << endl;
@@ -51,8 +52,8 @@ int main() {
     cout << "test value: " << testValue << endl;*/
 
 
-        while (cin) {
-                command = NULL;         // reset command each time in loop
+        while (running) {
+                //command =         // reset command each time in loop
                 cout << "Please enter a command ((i)nsert, "
                         << "(f)ind, (r)emove, (w)rite):  ";
                 cin >> command;
@@ -71,14 +72,14 @@ int main() {
                         // create student and place in symbol table
                         marketSymbols.insert(buffer);
                         break;
-                }
+                    }
                 case 'f': { 
                         bool found;    // whether found or not
 
                         cout << "Please enter a Market Symbol to lookup:  ";
                         cin >> buffer;  // formatted input
 
-                        found = BinaryTree.Lookup (buffer);
+                        found = marketSymbols.find(buffer);
                         
                         if (found)
                                 cout << "Symbol Found: \n" << buffer << "\n";
@@ -87,21 +88,29 @@ int main() {
                         break;
                         }
                 case 'r': { 
-                        Node * removed;
+                        int removed;
 
                         cout << "Please enter Market Symbol to remove:  ";
                         cin >> buffer;  // formatted input
 
-                        removed = BinaryTree.remove(buffer);
+                        removed = marketSymbols.remove(buffer);
 
-                        if (removed != nullptr)
+                        if (removed != 0)
                                 cout << "Symbol removed!!!\n" << buffer << "\n";
                         else
                                 cout << "Symbol: " << buffer << " not there!\n";
                         break;
+                    }
+                case 'w':{
+                        marketSymbols.Write ();
+                        break;
                 }
-                case 'w':
-                        BinaryTree.Write ();
+                
+                case 'q': {
+                        marketSymbols.clear();
+                        running = false;
+                        break;
+                    }
                 }
         }
 

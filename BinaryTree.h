@@ -72,9 +72,9 @@ class BinaryTree {
          * Remove an existing element
          *
          * @param query to be rmeoveed
-         * @return the node that was removed
+         * @return 1 for success 0 for failure
          */
-        Node* remove(const string & query) const;
+        int remove(const string & query);
 
         /**
          * Find a query element in this BST
@@ -108,7 +108,10 @@ class BinaryTree {
 
         void Write();
 
-        void WriteNode(Node*);
+        void AVLLeft(Node * node);
+        void AVLRight(Node * node);
+        void DoubleAVLLeftKink(Node * node);
+        void DoubleAVLRightKink(Node * node);
 
     private:
         /**
